@@ -6,10 +6,10 @@ export type RegistrationDocument = Registration & Document;
 @Schema()
 export class Registration {
     @Prop()
-    name: string;
+    email: string;
 
     @Prop()
-    password: number;
+    password: string;
 
 }
 
