@@ -18,14 +18,14 @@ export class RegistrationService {
         const isUsed = await this.regModel.findOne({email});
         if (isUsed) {
             throw new HttpException({
-                status: HttpStatus.FORBIDDEN,
+                status: HttpStatus.BAD_REQUEST,
                 error: 'This email already exist.',
-            }, HttpStatus.FORBIDDEN);
+            }, HttpStatus.BAD_REQUEST);
         }
 
-        password = await bcrypt.hash(password, 8)
+        password = await bcrypt.hash(password, 8);
 
-        return new this.regModel({email, password});
+        return new this.regModel({email, password}).save();
 
     }
 
